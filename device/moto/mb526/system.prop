@@ -15,9 +15,7 @@ rild.libargs=-d /dev/ttyS0
 #  off   = keep LED off during charging
 #  white = white LED for 'charging', green LED for 'charged'
 #  rgb   = mixed yellowish LED for 'charging', green LED for 'charged'
-persist.sys.charge_led=white
 # Brightness scaling of the button backlight
-persist.sys.button_brightness=100
 # use default multitouch configuration
 persist.sys.multitouch=2
 #=========================================================================================
