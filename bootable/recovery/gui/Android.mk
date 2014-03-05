@@ -82,7 +82,7 @@ LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/res
 TWRP_RES_LOC := $(commands_recovery_local_path)/gui/devices
 TWRP_RES_GEN := $(intermediates)/twrp
 
-$(TWRP_RES_GEN):
+$(TWRP_RES_GEN): $(wildcard $(TWRP_RES_LOC)/common/res/* $(TWRP_RES_LOC)/$(DEVICE_RESOLUTION)/res/*)
 	mkdir -p $(TARGET_RECOVERY_ROOT_OUT)/res/
 	cp -fr $(TWRP_RES_LOC)/common/res/* $(TARGET_RECOVERY_ROOT_OUT)/res/
 	cp -fr $(TWRP_RES_LOC)/$(DEVICE_RESOLUTION)/res/* $(TARGET_RECOVERY_ROOT_OUT)/res/
@@ -90,6 +90,7 @@ $(TWRP_RES_GEN):
 	ln -sf /sbin/busybox $(TARGET_RECOVERY_ROOT_OUT)/sbin/sh
 	ln -sf /sbin/pigz $(TARGET_RECOVERY_ROOT_OUT)/sbin/gzip
 	ln -sf /sbin/unpigz $(TARGET_RECOVERY_ROOT_OUT)/sbin/gunzip
+	touch $@
 
 LOCAL_GENERATED_SOURCES := $(TWRP_RES_GEN)
 LOCAL_SRC_FILES := twrp $(TWRP_RES_GEN)
