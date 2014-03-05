@@ -277,7 +277,7 @@ ifeq ($(TWHAVE_SELINUX), true)
 endif
 RECOVERY_BUSYBOX_SYMLINKS := $(addprefix $(TARGET_RECOVERY_ROOT_OUT)/sbin/,$(filter-out $(exclude),$(notdir $(BUSYBOX_LINKS))))
 $(RECOVERY_BUSYBOX_SYMLINKS): BUSYBOX_BINARY := busybox
-$(RECOVERY_BUSYBOX_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+$(RECOVERY_BUSYBOX_SYMLINKS):
 	@echo "Symlink: $@ -> $(BUSYBOX_BINARY)"
 	@mkdir -p $(dir $@)
 	@rm -rf $@

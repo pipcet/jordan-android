@@ -77,8 +77,6 @@ bt: $(CREL_CHECK)
 # new relase of compat-wireless-2.6 OR when the user updates the 
 # $(COMPAT_CONFIG) file
 $(CREL_CHECK):
-	@# Force to regenerate compat autoconf
-	@rm -f $(CONFIG_CHECK)
 	@./scripts/check_config.sh
 	@touch $@
 	@md5sum $(COMPAT_CONFIG) > $(CONFIG_CHECK)

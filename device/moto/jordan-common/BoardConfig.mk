@@ -159,44 +159,44 @@ TARGET_SYSTEMIMAGE_USE_SQUISHER := true
 
 ext_modules:
 	make -C $(TARGET_KERNEL_MODULES_EXT) modules KERNEL_DIR=$(KERNEL_OUT) ARCH=arm CROSS_COMPILE="arm-eabi-"
-	find $(TARGET_KERNEL_MODULES_EXT)/ -name "*.ko" -exec mv {} \
+	find $(TARGET_KERNEL_MODULES_EXT)/ -name "*.ko" -exec cp {} \
 		$(KERNEL_MODULES_OUT) \; || true
 
 COMPAT_MODULES:
-	make mrproper -C device/moto/jordan-common/modules/backports
 	make -C device/moto/jordan-common/modules/backports KERNEL_DIR=$(KERNEL_OUT) KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT) ARCH=arm CROSS_COMPILE="arm-eabi-" defconfig-mapphone
 	make -C device/moto/jordan-common/modules/backports KERNEL_DIR=$(KERNEL_OUT) KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT) ARCH=arm CROSS_COMPILE="arm-eabi-"
-	mv device/moto/jordan-common/modules/backports/compat/compat.ko $(KERNEL_MODULES_OUT)
+	cp device/moto/jordan-common/modules/backports/compat/compat.ko $(KERNEL_MODULES_OUT)
 ifeq ($(TARGET_USE_BLUEDROID_STACK),false)
-	mv device/moto/jordan-common/modules/backports/net/bluetooth/bluetooth.ko $(KERNEL_MODULES_OUT)
-	mv device/moto/jordan-common/modules/backports/net/bluetooth/bnep/bnep.ko $(KERNEL_MODULES_OUT)
-	mv device/moto/jordan-common/modules/backports/net/bluetooth/rfcomm/rfcomm.ko $(KERNEL_MODULES_OUT)
-	mv device/moto/jordan-common/modules/backports/drivers/bluetooth/btwilink.ko $(KERNEL_MODULES_OUT)
-	mv device/moto/jordan-common/modules/backports/drivers/bluetooth/hci_uart.ko $(KERNEL_MODULES_OUT)
+	cp device/moto/jordan-common/modules/backports/net/bluetooth/bluetooth.ko $(KERNEL_MODULES_OUT)
+	cp device/moto/jordan-common/modules/backports/net/bluetooth/bnep/bnep.ko $(KERNEL_MODULES_OUT)
+	cp device/moto/jordan-common/modules/backports/net/bluetooth/rfcomm/rfcomm.ko $(KERNEL_MODULES_OUT)
+	cp device/moto/jordan-common/modules/backports/drivers/bluetooth/btwilink.ko $(KERNEL_MODULES_OUT)
+	cp device/moto/jordan-common/modules/backports/drivers/bluetooth/hci_uart.ko $(KERNEL_MODULES_OUT)
 endif
-	mv device/moto/jordan-common/modules/backports/net/mac80211/mac80211.ko $(KERNEL_MODULES_OUT)
-	mv device/moto/jordan-common/modules/backports/net/wireless/cfg80211.ko $(KERNEL_MODULES_OUT)
-	mv device/moto/jordan-common/modules/backports/drivers/net/wireless/ti/wlcore/wlcore.ko $(KERNEL_MODULES_OUT)
-	mv device/moto/jordan-common/modules/backports/drivers/net/wireless/ti/wl12xx/wl12xx.ko $(KERNEL_MODULES_OUT)
-	mv device/moto/jordan-common/modules/backports/drivers/net/wireless/ti/wlcore/wlcore_sdio.ko $(KERNEL_MODULES_OUT)
+	cp device/moto/jordan-common/modules/backports/net/mac80211/mac80211.ko $(KERNEL_MODULES_OUT)
+	cp device/moto/jordan-common/modules/backports/net/wireless/cfg80211.ko $(KERNEL_MODULES_OUT)
+	cp device/moto/jordan-common/modules/backports/drivers/net/wireless/ti/wlcore/wlcore.ko $(KERNEL_MODULES_OUT)
+	cp device/moto/jordan-common/modules/backports/drivers/net/wireless/ti/wl12xx/wl12xx.ko $(KERNEL_MODULES_OUT)
+	cp device/moto/jordan-common/modules/backports/drivers/net/wireless/ti/wlcore/wlcore_sdio.ko $(KERNEL_MODULES_OUT)
 	arm-linux-androideabi-strip --strip-unneeded $(KERNEL_MODULES_OUT)/*
 
 WLAN_MODULES:
-	make clean -C hardware/ti/wlan/mac80211/compat_wl12xx
 	make -C hardware/ti/wlan/mac80211/compat_wl12xx KERNEL_DIR=$(KERNEL_OUT) KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT) ARCH=arm CROSS_COMPILE="arm-eabi-"
-	mv hardware/ti/wlan/mac80211/compat_wl12xx/compat/compat.ko $(KERNEL_MODULES_OUT)
-	mv hardware/ti/wlan/mac80211/compat_wl12xx/net/mac80211/mac80211.ko $(KERNEL_MODULES_OUT)
-	mv hardware/ti/wlan/mac80211/compat_wl12xx/net/wireless/cfg80211.ko $(KERNEL_MODULES_OUT)
-	mv hardware/ti/wlan/mac80211/compat_wl12xx/drivers/net/wireless/wl12xx/wl12xx.ko $(KERNEL_MODULES_OUT)
-	mv hardware/ti/wlan/mac80211/compat_wl12xx/drivers/net/wireless/wl12xx/wl12xx_sdio.ko $(KERNEL_MODULES_OUT)
+	cp hardware/ti/wlan/mac80211/compat_wl12xx/compat/compat.ko $(KERNEL_MODULES_OUT)
+	cp hardware/ti/wlan/mac80211/compat_wl12xx/net/mac80211/mac80211.ko $(KERNEL_MODULES_OUT)
+	cp hardware/ti/wlan/mac80211/compat_wl12xx/net/wireless/cfg80211.ko $(KERNEL_MODULES_OUT)
+	cp hardware/ti/wlan/mac80211/compat_wl12xx/drivers/net/wireless/wl12xx/wl12xx.ko $(KERNEL_MODULES_OUT)
+	cp hardware/ti/wlan/mac80211/compat_wl12xx/drivers/net/wireless/wl12xx/wl12xx_sdio.ko $(KERNEL_MODULES_OUT)
 	arm-linux-androideabi-strip --strip-unneeded $(KERNEL_MODULES_OUT)/*
 
 hboot:
+#	echo "console=ttyS2,115200n8 rw mem=244M@0x80C00000 init=/init ip=off motobldlabel=none mtdparts=omap2-nand.0:128k(mbr),128k(mbmloader),256k(unused0),512k(mbm),512k(mbmbackup),512k(ebr),512k(bploader),512k(cdt),4m(pds),512k(lbl),512k(lbl_backup),1m(logo),2m(sp),512k(devtree),512k(devtree_backup),4m(bpsw),8m(boot),8m(recovery),14m(cdrom),512k(misc),512k(cid),4m(kpanic),334464k(system),384k(unused1),512k(prek),512k(pkbackup),200m(cache),445m(userdata)" > $(PRODUCT_OUT)/system/bootmenu/2nd-boot/cmdline.oldkernel
+# console=/dev/null rw mem=498M@0x80C00000 init=/init ip=off brdrev=P3A omap3_die_id androidboot.bootloader=0x0000 mmcparts=mmcblk1:p7(pds),p15(boot),p16(recovery),p17(cdrom),p18(misc),p19(cid),p20(kpanic),p21(system),p22(prek),p23(pkbackup),p24(cache),p25(userdata)
 	mkdir -p $(PRODUCT_OUT)/system/bootstrap/2nd-boot   
-	echo "$(BOARD_KERNEL_CMDLINE)" > $(PRODUCT_OUT)/system//bootstrap/2nd-boot/cmdline  
+	echo "console=/dev/null rw mem=498M@0x80C00000 init=/init ip=off brdrev=P3A omap3_die_id androidboot.bootloader=0x0000 mmcparts=mmcblk1:p7(pds),p15(boot),p16(recovery),p17(cdrom),p18(misc),p19(cid),p20(kpanic),p21(system),p22(prek),p23(pkbackup),p24(cache),p25(userdata)" > $(PRODUCT_OUT)/system/bootstrap/2nd-boot/cmdline.oldkernel  
+	echo "$(BOARD_KERNEL_CMDLINE)" > $(PRODUCT_OUT)/system/bootstrap/2nd-boot/cmdline
 	make -C  $(ANDROID_BUILD_TOP)/device/moto/jordan-common/bootstrap/hboot ARCH=arm CROSS_COMPILE="arm-eabi-"
-	mv $(ANDROID_BUILD_TOP)/device/moto/jordan-common/bootstrap/hboot/hboot.bin $(PRODUCT_OUT)/system/bootstrap/2nd-boot/
-	make clean -C $(ANDROID_BUILD_TOP)/device/moto/jordan-common/bootstrap/hboot
+	cp $(ANDROID_BUILD_TOP)/device/moto/jordan-common/bootstrap/hboot/hboot.bin $(PRODUCT_OUT)/system/bootstrap/2nd-boot/
 
 # If kernel sources are present in repo, here is the location
 TARGET_KERNEL_SOURCE := $(ANDROID_BUILD_TOP)/jordan-kernel
