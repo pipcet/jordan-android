@@ -4,7 +4,8 @@
 # <file system>         <mount point>     <type>    <options>                      <dump> <pass>
 
 rootfs                  /                 rootfs    ro,relatime                         0      0
-/dev/block/mmcblk1p21   /system           ext3      ro,noatime,errors=continue          0      0
+/dev/block/mmcblk1p21   /system-boot      ext3      ro,noatime,errors=continue          0      0
+/dev/block/mmcblk0p2    /system           ext3      ro,noatime,errors=continue          0      0
 /dev/block/mmcblk1p25   /data             ext3      rw,nosuid,noatime,errors=continue   0      0
 /dev/block/mmcblk1p24   /cache            ext3      rw,noatime,errors=continue          0      0
 /dev/block/mmcblk1p17   /cdrom            iso9660   ro                                  0      0

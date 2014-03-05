@@ -13,6 +13,7 @@
 /pds            ext3        /dev/block/loop7
 /cache          ext4        /dev/block/mmcblk1p24
 /data           ext4        /dev/block/mmcblk1p25
-/system         ext3        /dev/block/mmcblk1p21
+/system         ext3        /dev/block/mmcblk0p2
+/system-boot    ext3        /dev/block/mmcblk1p21
 /sdcard         auto        /dev/block/mmcblk0p1    /dev/block/mmcblk0
 /sd-ext         auto        /dev/block/mmcblk0p2    /dev/block/mmcblk0
