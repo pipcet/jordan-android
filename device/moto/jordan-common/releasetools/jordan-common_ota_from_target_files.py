@@ -40,7 +40,7 @@ def FullOTA_InstallEnd(self, *args, **kwargs):
   self.script.MakeSymlinks(symlinks)
   self.script.ShowProgress(0.2, 0)
 
-  self.script.Print("Finished installing Jelly Bean for OMAP3 devices, Enjoy!")
+  self.script.Print("Finished installing Kit Kat for OMAP3 devices, Enjoy!")
 
 def FullOTA_DisableBootImageInstallation(self, *args, **kwargs):
   return True

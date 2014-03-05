@@ -1,10 +1,10 @@
-Jelly Bean for the Motorola Defy+ (Android 4.1.1 AOSP)
+Kit Kat for the Motorola Defy/Motorola Defy+
 
 
 Download:
 =========
 
-repo init -u git://github.com/CyanogenDefy/android.git -b jellybean
+repo init -u git://github.com/Quarx2k/android.git -b cm-11.0
 
 repo sync
 
@@ -20,7 +20,7 @@ Build:
 
 rm -rf out/target
 
-For CM10 branch :
+For CM11 branch :
   source build/envsetup.sh && brunch mb526
 
 or for AOSP :
@@ -35,3 +35,5 @@ Links:
 XDA ICS Thread : http://forum.xda-developers.com/showthread.php?t=1353003
 
 XDA JB Thread : http://forum.xda-developers.com/showthread.php?t=1768702
+
+XDA KK Thread : http://forum.xda-developers.com/showthread.php?t=2515036
