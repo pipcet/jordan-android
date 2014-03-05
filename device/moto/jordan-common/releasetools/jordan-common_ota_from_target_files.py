@@ -4,8 +4,8 @@ def InstallEnd_SetBootstrapPermissions(self, *args, **kwargs):
   self.script.SetPermissionsRecursive("/system/bootstrap/script", 0, 0, 0755, 0755, None, None)
 
 def FullOTA_InstallBegin(self, *args, **kwargs):
-  self.script.AppendExtra('run_program("/sbin/tune2fs", "-O has_journal /dev/block/mmcblk1p24");')
-  self.script.AppendExtra('run_program("/sbin/tune2fs", "-O has_journal /dev/block/mmcblk1p25");')
+  self.script.AppendExtra('run_program("/sbin/tune2fs", "-O", "has_journal", "/dev/block/mmcblk1p24");')
+  self.script.AppendExtra('run_program("/sbin/tune2fs", "-O", "has_journal", "/dev/block/mmcblk1p25");')
 
 def FullOTA_InstallEnd(self, *args, **kwargs):
   self.script.Print("Wiping cache...")
