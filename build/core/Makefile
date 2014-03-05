@@ -45,13 +45,15 @@ $(foreach cf,$(unique_product_copy_files_pairs), \
     $(eval _src := $(call word-colon,1,$(cf))) \
     $(eval _dest := $(call word-colon,2,$(cf))) \
     $(if $(filter $(unique_product_copy_files_destinations),$(_dest)), \
-        $(info PRODUCT_COPY_FILES $(cf) ignored.), \
+        $(info PRODUCT_COPY_FILES $(cf) ignored, source $(sourceof_$(_dest)).), \
         $(eval _fulldest := $(call append-path,$(PRODUCT_OUT),$(_dest))) \
         $(if $(filter %.xml,$(_dest)),\
             $(eval $(call copy-xml-file-checked,$(_src),$(_fulldest))),\
             $(eval $(call copy-one-file,$(_src),$(_fulldest)))) \
         $(eval ALL_DEFAULT_INSTALLED_MODULES += $(_fulldest)) \
+	$(eval sourceof_$(_dest) := $(_src)) \
         $(eval unique_product_copy_files_destinations += $(_dest))))
+
 unique_product_copy_files_pairs :=
 unique_product_copy_files_destinations :=
 
