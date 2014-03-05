@@ -14,16 +14,17 @@ LOCAL_MODULE_CLASS := RECOVERY_EXECUTABLES
 LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/sbin
 include $(BUILD_EXECUTABLE)
 
+# removed: we have external/fsck_msdos
 # build symlink
-SYMLINKS := $(addprefix $(TARGET_OUT)/bin/,fsck_msdos)
-$(SYMLINKS): DOSFSCK_BINARY := $(LOCAL_MODULE)
-$(SYMLINKS): $(LOCAL_INSTALLED_MODULE) $(LOCAL_PATH)/Android.mk
-	@echo "Symlink: $@ -> $(DOSFSCK_BINARY)"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf $(DOSFSCK_BINARY) $@
+#SYMLINKS := $(addprefix $(TARGET_OUT)/bin/,fsck_msdos)
+#$(SYMLINKS): DOSFSCK_BINARY := $(LOCAL_MODULE)
+#$(SYMLINKS): $(LOCAL_INSTALLED_MODULE) $(LOCAL_PATH)/Android.mk
+#	@echo "Symlink: $@ -> $(DOSFSCK_BINARY)"
+#	@mkdir -p $(dir $@)
+#	@rm -rf $@
+#	$(hide) ln -sf $(DOSFSCK_BINARY) $@
 
-ALL_DEFAULT_INSTALLED_MODULES += $(SYMLINKS)
+#ALL_DEFAULT_INSTALLED_MODULES += $(SYMLINKS)
 
 # We need this so that the installed files could be picked up based on the
 # local module name

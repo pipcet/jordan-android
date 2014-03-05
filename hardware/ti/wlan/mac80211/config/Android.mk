@@ -39,7 +39,7 @@ include $(BUILD_PREBUILT)
 ########################
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := wifical.sh
+LOCAL_MODULE := wifical-ti.sh
 LOCAL_MODULE_TAGS := eng
 LOCAL_MODULE_PATH := $(TARGET_OUT)/bin
 LOCAL_SRC_FILES := WLAN_Calibration_Script.sh
