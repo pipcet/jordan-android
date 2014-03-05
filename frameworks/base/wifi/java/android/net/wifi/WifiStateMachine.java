@@ -2469,7 +2469,7 @@ public class WifiStateMachine extends StateMachine {
      * on a running daemon
      */
     private void startSoftApWithConfig(final WifiConfiguration config) {
-        // start hostapd on a seperate thread
+        // start hostapd on a separate thread
         new Thread(new Runnable() {
             public void run() {
                 try {

@@ -332,7 +332,7 @@ Debugging notes
 ---------------
 By default, programs executed by init will drop stdout and stderr into
 /dev/null. To help with debugging, you can execute your program via the
-Andoird program logwrapper. This will redirect stdout/stderr into the
+Android program logwrapper. This will redirect stdout/stderr into the
 Android logging system (accessed via logcat).
 
 For example

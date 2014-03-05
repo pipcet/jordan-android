@@ -108,7 +108,7 @@ TARGET_COPY_OUT_VENDOR := system/vendor
 TARGET_COPY_OUT_ROOT := root
 TARGET_COPY_OUT_RECOVERY := recovery
 
-# Read the product specs so we an get TARGET_DEVICE and other
+# Read the product specs so we can get TARGET_DEVICE and other
 # variables that we need in order to locate the output files.
 include $(BUILD_SYSTEM)/product_config.mk
 

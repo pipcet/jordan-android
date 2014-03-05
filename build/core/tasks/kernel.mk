@@ -37,7 +37,7 @@ else
 	TARGET_PREBUILT_INT_KERNEL_TYPE := zImage
 endif
 
-## Do be discontinued in a future version. Notify builder about target
+## To be discontinued in a future version. Notify builder about target
 ## kernel format requirement
 ifeq ($(BOARD_KERNEL_IMAGE_NAME),)
 ifeq ($(BOARD_USES_UBOOT),true)
