@@ -1,0 +1,1 @@
+../../../repo-overlay/build/core/post_clean.mk

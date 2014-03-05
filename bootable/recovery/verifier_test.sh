@@ -1,0 +1,1 @@
+../../../repo-overlay/bootable/recovery/verifier_test.sh

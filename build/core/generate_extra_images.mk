@@ -1,0 +1,1 @@
+../../../repo-overlay/build/core/generate_extra_images.mk

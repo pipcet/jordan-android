@@ -1,0 +1,1 @@
+../../../../repo-overlay/build/core/tasks/collect_gpl_sources.mk

@@ -1,0 +1,1 @@
+../../../repo-overlay/external/nano/nano.spec

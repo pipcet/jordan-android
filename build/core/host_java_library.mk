@@ -1,0 +1,1 @@
+../../../repo-overlay/build/core/host_java_library.mk

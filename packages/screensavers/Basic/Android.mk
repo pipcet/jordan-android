@@ -1,0 +1,1 @@
+../../../../repo-overlay/packages/screensavers/Basic/Android.mk

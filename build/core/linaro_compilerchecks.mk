@@ -1,0 +1,1 @@
+../../../repo-overlay/build/core/linaro_compilerchecks.mk

@@ -1,0 +1,1 @@
+../../../../repo-overlay/packages/providers/CalendarProvider/Android.mk

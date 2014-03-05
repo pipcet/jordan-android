@@ -1,0 +1,1 @@
+../../../repo-overlay/build/core/dynamic_binary.mk

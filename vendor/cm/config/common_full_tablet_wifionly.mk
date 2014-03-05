@@ -1,0 +1,1 @@
+../../../../repo-overlay/vendor/cm/config/common_full_tablet_wifionly.mk

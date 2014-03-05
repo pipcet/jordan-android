@@ -1,0 +1,1 @@
+../../../repo-overlay/build/core/raw_static_library.mk

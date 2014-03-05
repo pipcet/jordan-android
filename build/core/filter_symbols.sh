@@ -1,0 +1,1 @@
+../../../repo-overlay/build/core/filter_symbols.sh

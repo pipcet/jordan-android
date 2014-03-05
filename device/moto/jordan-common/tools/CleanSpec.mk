@@ -1,0 +1,1 @@
+../../../../../repo-overlay/device/moto/jordan-common/tools/CleanSpec.mk

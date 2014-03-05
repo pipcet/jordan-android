@@ -1,0 +1,1 @@
+../../../../../repo-overlay/hardware/ti/wlan/mac80211/wl127x-wlan-products.mk

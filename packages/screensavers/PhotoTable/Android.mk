@@ -1,0 +1,1 @@
+../../../../repo-overlay/packages/screensavers/PhotoTable/Android.mk
