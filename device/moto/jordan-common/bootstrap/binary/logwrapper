@@ -37,7 +37,7 @@ fi
 if [ $(/system/bootstrap/binary/safestrapmenu > /dev/null 2>&1;echo $?) -eq 0 ]; then 
 $BB_STATIC ash /system/bootstrap/script/recovery.sh
 else
-$BB_STATIC ash /system/bootstrap/script/2nd-boot.sh 
+$BB_STATIC ash /system/bootstrap/script/2nd-boot.sh
 fi
 
 fi
