@@ -492,9 +492,13 @@ ifneq ($(dont_bother),true)
 # Can't use first-makefiles-under here because
 # --mindepth=2 makes the prunes not work.
 subdir_makefiles := \
-	$(shell build/tools/findleaves.py --prune=$(OUT_DIR) --prune=.repo --prune=.git $(subdirs) Android.mk)
+	$(call mybuild,.subdir_makefiles, \
+	build/tools/findleaves.py --prune=$(OUT_DIR) --prune=.repo --prune=.git $(subdirs) Android.mk \
+	)
 
+$(info including... $(subdir_makefiles))
 $(foreach mk, $(subdir_makefiles), $(eval include $(mk)))
+$(info including done)
 
 endif # dont_bother
 
@@ -948,3 +952,7 @@ showcommands:
 .PHONY: nothing
 nothing:
 	@echo Successfully read the makefiles.
+
+.PHONY: newfiles
+newfiles:
+	find -name '.all*' -o -name '.subdir*' | xargs rm -v

@@ -131,6 +131,12 @@ $(strip \
  )
 endef
 
+#$(if $(wildcard $(1)),$(shell cat $(1)),$(shell ( $(2) )|tee $(1)))
+
+define mybuild
+$(shell ( $(2) )|tee $(1))
+endef
+
 ###########################################################
 ## Retrieve a list of all makefiles immediately below some directory
 ###########################################################
@@ -175,11 +181,15 @@ endef
 ##    SRC_FILES := $(call all-java-files-under,src tests)
 ###########################################################
 
-define all-java-files-under
+define all-java-files-under-inner
 $(patsubst ./%,%, \
-  $(shell cd $(LOCAL_PATH) ; \
-          find -L $(1) -name "*.java" -and -not -name ".*") \
- )
+$(call mybuild,$(1), \
+	cd $(LOCAL_PATH) ; \
+        find -L $(2) -name "*.java" -and -not -name ".*"))
+endef
+
+define all-java-files-under
+$(foreach dir,$(1),$(call all-java-files-under-inner,$(LOCAL_PATH)/.all-java-files-under-$(subst /,-,$(strip $(dir))),$(strip $(dir))))
 endef
 
 ###########################################################
