@@ -935,6 +935,8 @@ public class NetworkManagementService extends INetworkManagementService.Stub
         for (String d : dhcpRange) {
             cmd.appendArg(d);
         }
+	// set lease time. 120 seconds is the minimum supported by dnsmasq
+	cmd.appendArg("120");
 
         try {
             mConnector.execute(cmd);
