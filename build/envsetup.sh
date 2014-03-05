@@ -1927,7 +1927,11 @@ function mka() {
             make -j `sysctl hw.ncpu|cut -d" " -f2` "$@"
             ;;
         *)
-            schedtool -B -n 1 -e ionice -n 1 make -j$(cat /proc/cpuinfo | grep "^processor" | wc -l) "$@"
+	    #schedtool -B -n 1 -e ionice -n 1 make -j$(cat /proc/cpuinfo | grep "^processor" | wc -l) "$@"
+            #schedtool -B -n 19 -e ionice -n 1 make --warn-undefined-variables -d -w -k -j$((1+$(cat /proc/cpuinfo | grep "^processor" | wc -l))) "$@"
+            schedtool -B -n 19 -e ionice -n 1 make $MAKE_DEBUG -k -j$((1+$(cat /proc/cpuinfo | grep "^processor" | wc -l))) "$@"
+	    #schedtool -B -n 1 -e ionice -n 1 make -d -w "$@"
+            #schedtool -B -n 1 -e ionice -n 1 -- make "$@"
             ;;
     esac
 }
