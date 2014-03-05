@@ -7,6 +7,6 @@ LOCAL_MODULE := hbootuser
 LOCAL_STATIC_LIBRARIES:= libc libcutils
 LOCAL_MODULE_TAGS := optional
 LOCAL_FORCE_STATIC_EXECUTABLE := true
-LOCAL_MODULE_PATH := $(PRODUCT_OUT)/system/bootstrap/binary/
+LOCAL_MODULE_PATH := $(PRODUCT_OUT)/system/bootstrap/2nd-boot
 
 include $(BUILD_EXECUTABLE)

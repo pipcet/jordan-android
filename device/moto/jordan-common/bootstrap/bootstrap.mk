@@ -1,5 +1,11 @@
 # Required tools and blobs for bootstrap
 bm_device = device/moto/jordan-common
+
+PRODUCT_PACKAGES += \
+	2nd-init \
+	hbootuser \
+	safestrapmenu \
+
 include $(all-subdir-makefiles)
 
 # Ramdisk
@@ -19,9 +25,6 @@ PRODUCT_COPY_FILES += \
 # prebuilt binaries
 PRODUCT_COPY_FILES += \
 	${bm_device}/bootstrap/binary/logwrapper:system/bin/logwrapper \
-	${bm_device}/bootstrap/binary/logwrapper.bin:system/bin/logwrapper.bin \
-	${bm_device}/bootstrap/binary/hbootuser:system/bootstrap/binary/hbootuser \
-	${bm_device}/bootstrap/binary/safestrapmenu:system/bootstrap/binary/safestrapmenu \
 	${bm_device}/bootstrap/binary/busybox:system/bootstrap/binary/busybox \
 	${bm_device}/bootstrap/modules/hbootmod.ko:system/bootstrap/modules/hbootmod.ko \
 	${bm_device}/bootstrap/2nd-boot/hboot.cfg:system/bootstrap/2nd-boot/hboot.cfg \
