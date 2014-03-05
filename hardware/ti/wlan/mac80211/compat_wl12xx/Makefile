@@ -8,8 +8,9 @@ endif
 export KLIB_BUILD ?=	$(KLIB)/build
 # Sometimes not available in the path
 MODPROBE := /sbin/modprobe
-MADWIFI=$(shell $(MODPROBE) -l ath_pci)
-OLD_IWL=$(shell $(MODPROBE) -l iwl4965)
+# we're cross-compiling, so it makes no sense to run modprobe on the host.
+#MADWIFI=$(shell $(MODPROBE) -l ath_pci)
+#OLD_IWL=$(shell $(MODPROBE) -l iwl4965)
 
 DESTDIR?=
 
