@@ -164,6 +164,7 @@ PRODUCT_PACKAGES += \
     e2fsck \
     mke2fs \
     tune2fs \
+    badblocks \
     bash \
     nano \
     htop \
