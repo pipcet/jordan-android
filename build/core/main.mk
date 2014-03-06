@@ -955,4 +955,4 @@ nothing:
 
 .PHONY: newfiles
 newfiles:
-	find -name '.all*' -o -name '.subdir*' | xargs rm -v
+	find -name '.all-java-files-under*' -o -name '.subdir*' | xargs rm -v
