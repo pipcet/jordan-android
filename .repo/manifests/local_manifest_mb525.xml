@@ -25,6 +25,7 @@
   <remove-project name="CyanogenMod/android_packages_apps_VideoEditor"/>
   <remove-project name="CyanogenMod/android_packages_apps_InCallUI"/>
 
+  <project path="external/bootmenu" name="Quarx2k/android_external_bootmenu" revision="cm-11.0" />
   <project path="bionic" name="Quarx2k/android_bionic"  />
   <project path="build" name="Quarx2k/android_build" />
   <project path="frameworks/av" name="Quarx2k/android_frameworks_av"  />
