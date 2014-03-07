@@ -1,1 +1,0 @@
-../../../../repo-overlay/device/generic/armv7-a-neon/mini_armv7a_neon.mk
