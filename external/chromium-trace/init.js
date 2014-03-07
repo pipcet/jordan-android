@@ -1,1 +1,0 @@
-../../../repo-overlay/external/chromium-trace/init.js
