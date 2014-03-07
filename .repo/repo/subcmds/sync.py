@@ -258,47 +258,50 @@ later is required to fix a server side protocol bug.
     # We'll set to true once we've locked the lock.
     did_lock = False
 
-    if not opt.quiet:
-      print('Fetching project %s' % project.name)
-
+    success = False
     # Encapsulate everything in a try/except/finally so that:
     # - We always set err_event in the case of an exception.
     # - We always make sure we call sem.release().
     # - We always make sure we unlock the lock if we locked it.
-    try:
+    while not success:
+      if not opt.quiet:
+       print('Fetching project %s' % project.name)
+
       try:
-        start = time.time()
-        success = project.Sync_NetworkHalf(
-          quiet=opt.quiet,
-          current_branch_only=opt.current_branch_only,
-          clone_bundle=not opt.no_clone_bundle,
-          no_tags=opt.no_tags, archive=self.manifest.IsArchive)
-        self._fetch_times.Set(project, time.time() - start)
+        try:
+          start = time.time()
+          success = project.Sync_NetworkHalf(
+            quiet=opt.quiet,
+            current_branch_only=opt.current_branch_only,
+            clone_bundle=not opt.no_clone_bundle,
+            no_tags=opt.no_tags, archive=self.manifest.IsArchive)
+          self._fetch_times.Set(project, time.time() - start)
 
-        # Lock around all the rest of the code, since printing, updating a set
-        # and Progress.update() are not thread safe.
-        lock.acquire()
-        did_lock = True
+          # Lock around all the rest of the code, since printing, updating a set
+          # and Progress.update() are not thread safe.
+          lock.acquire()
+          did_lock = True
 
-        if not success:
-          print('error: Cannot fetch %s' % project.name, file=sys.stderr)
-          if opt.force_broken:
-            print('warn: --force-broken, continuing to sync',
-                  file=sys.stderr)
-          else:
-            raise _FetchError()
+          if not success:
+            print('error: Cannot fetch %s' % project.name, file=sys.stderr)
+            if opt.force_broken:
+              print('warn: --force-broken, continuing to sync',
+                    file=sys.stderr)
+            else:
+              raise _FetchError()
 
-        fetched.add(project.gitdir)
-        pm.update()
-      except _FetchError:
-        err_event.set()
-      except:
-        err_event.set()
-        raise
-    finally:
-      if did_lock:
-        lock.release()
-      sem.release()
+          fetched.add(project.gitdir)
+          pm.update()
+        except _FetchError:
+          pass
+        except:
+          pass
+          raise
+      finally:
+        if did_lock:
+          lock.release()
+        did_lock = False
+        sem.release()
 
     return success
 
