@@ -134,7 +134,7 @@ endef
 #$(if $(wildcard $(1)),$(shell cat $(1)),$(shell ( $(2) )|tee $(1)))
 
 define mybuild
-$(shell ( $(2) )|tee $(1))
+$(shell ( $(2) ))
 endef
 
 ###########################################################
